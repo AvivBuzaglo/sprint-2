@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main-style.css">
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
     <title>Meme Generator</title>
 </head>
-<body>
-
+<body onload="onInit()">
+    <header><h1>Meme Generator</h1></header>
     <section class="gallery">
 
     </section>
-
+    
+    <div class="canvas-container">
+        <canvas height="450" width="450"></canvas>
+    </div>
+    
     <section class="editor">
-
+        <input type="text" name="text" onchange="renderMeme()">
     </section>
 </body>
 </html>
