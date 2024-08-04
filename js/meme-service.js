@@ -2,10 +2,11 @@
 
 let gMeme = {
     img: 'meme-imgs/meme-imgs-(square)/17.jpg',
-    text: 'hello wolrd',
+    text: {line1: 'hello wolrd', line2: 'Bye World'},
+    secondLine: false,
     color: {outline: 'black', fill: 'white'},
     fontSize: '40px Arial',
-    pos: {x: 225, y: 35}
+    pos: {line1: {x: 225, y: 35}, line2: {x: 225, y: 425}}
 }
 
 
@@ -13,8 +14,12 @@ function getMeme() {
     return gMeme
 }
 
-function setLineTxt(txt) {
-    gMeme.text = txt
+function setLine1Txt(txt) {
+    gMeme.text.line1 = txt
+}
+
+function setLine2Txt(txt) {
+    gMeme.text.line2 = txt
 }
 
 function setImg(imgUrl) {

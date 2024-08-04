@@ -24,8 +24,13 @@
 
     <section class="editor">
         <h2 class="editor-header">Editor</h2>
-        <label for="text">Enter your MEME text:</label>
-        <input type="text" name="text" placeholder="Enter Text Here" value="" onchange="renderMeme()">
+        <label for="text">Enter your MEME text(Upper line):</label>
+        <input type="text" name="text1" placeholder="Enter Text Here" value="" onchange="renderMeme()">
+        <br>
+        <button class="add-line" onclick="onAddLine(this)">Add secont line</button>
+        <label class="second-line hidden" for="text">Enter your MEME text(Bottom line):</label>
+        <input class="second-line-input hidden" type="text" name="text2" placeholder="Enter Text Here" value="" onchange="renderMeme()">
+        <button class="remove-line hidden" onclick="onRemoveLine(this)">Remove second line</button>
         <br>
         <label for="color">Text outline color:</label>
         <input type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
