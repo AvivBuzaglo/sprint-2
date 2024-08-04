@@ -32,15 +32,12 @@ function renderMeme() {
         }
     }
     
-    
     drawImg(MEME.img)
     setTimeout(() => drawText(TEXT1 || MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
     if(MEME.secondLine) setTimeout(() => drawText(TEXT2 || MEME.text.line2, MEME.pos.line2.x, MEME.pos.line2.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
     
     if(MEME.selectedLine === 'line1') setTimeout(() => drawRect(MEME.pos.line1.x, MEME.pos.line1.y), 110)
     if(MEME.selectedLine === 'line2') setTimeout(() => drawRect(MEME.pos.line2.x, MEME.pos.line2.y), 110)
-    
-    
 }
 
 function clearCanvas() {
@@ -71,8 +68,26 @@ function drawRect(x, y) {
     gCtx.beginPath()
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 2
-    gCtx.rect(x - 110, y - 35, 220, 50)
+    gCtx.rect(x - 110, y - 37, 220, 50)
     gCtx.stroke()
+}
+
+function onDraw(ev) {
+    const {offsetX, offsetY} = ev
+    const MEME = getMeme()
+    const line1 = MEME.pos.line1
+    const line2 = MEME.pos.line2
+    // console.log('offset x: ', offsetX, '\n', 'offset y: ', offsetY)
+    
+    if((line1.x - 100) <= offsetX && (line1.x + 100) >= offsetX && (line1.y - 30) <= offsetY && line1.y >= offsetY) {
+        setSelectedByClick('line1')
+        renderMeme()
+    }
+    if((line2.x - 100) <= offsetX && (line2.x + 100) >= offsetX && (line2.y - 30) <= offsetY && line2.y >= offsetY) {
+        if(!MEME.secondLine) return 
+        setSelectedByClick('line2')
+        renderMeme()
+    }
 }
 
 function onImgSelect(imgUrl) {

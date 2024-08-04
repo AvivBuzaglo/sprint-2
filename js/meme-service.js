@@ -48,3 +48,7 @@ function setSelectedLine() {
         gMeme.selectedLine = 'line2'
     } else gMeme.selectedLine = 'line1'
 }
+
+function setSelectedByClick(line) {
+    gMeme.selectedLine = line
+}
