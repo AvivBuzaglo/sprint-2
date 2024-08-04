@@ -26,7 +26,7 @@ function renderMeme() {
     
     
     drawImg(MEME.img)
-    setTimeout(() => drawText(TEXT || MEME.text, MEME.pos.x, MEME.pos.y, MEME.color.outline, MEME.color.fill), 100)    
+    setTimeout(() => drawText(TEXT || MEME.text, MEME.pos.x, MEME.pos.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)    
 }
 
 function clearCanvas() {
@@ -41,11 +41,11 @@ function drawImg(img) {
     }
 }
 
-function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'white') {
+function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'white', fontSize = '40px Arial') {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = outlineColor
     gCtx.fillStyle = fillColor
-    gCtx.font = '40px Arial'
+    gCtx.font = fontSize 
     gCtx.textAlign = 'center'
     gCtx.textBaseLine = 'middle'
 
@@ -66,6 +66,11 @@ function onOutLineColor(elOutline) {
 function onFillColor(elFill) {
     const COLOR = elFill.value
     setFillColor(COLOR)
+}
+
+function onFontSize(elFontSize) {
+    const SIZE = elFontSize.value + 'px'
+    setFontSize(SIZE)
 }
 
 function onDownloadImg(elLink) {

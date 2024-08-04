@@ -4,6 +4,7 @@ let gMeme = {
     img: 'meme-imgs/meme-imgs-(square)/17.jpg',
     text: 'hello wolrd',
     color: {outline: 'black', fill: 'white'},
+    fontSize: '40px Arial',
     pos: {x: 225, y: 35}
 }
 
@@ -26,4 +27,8 @@ function setOutlineColor(color) {
 
 function setFillColor(color) {
     gMeme.color.fill = color
+}
+
+function setFontSize(size) {
+    gMeme.fontSize = size + ' Arial'
 }
