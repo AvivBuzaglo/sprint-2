@@ -20,8 +20,24 @@
         <canvas height="450" width="450"></canvas>
     </div>
     
+    <hr>
+
     <section class="editor">
-        <input type="text" name="text" onchange="renderMeme()">
+        <h2 class="editor-header">Editor</h2>
+        <label for="text">Enter your MEME text:</label>
+        <input type="text" name="text" placeholder="Enter Text Here" value="" onchange="renderMeme()">
+        <br>
+        <label for="color">Text outline color:</label>
+        <input type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
+        <br>
+        <label for="color">Text fill color:</label>
+        <input type="color" name="fill" value="#FFFFFF" onchange="onFillColor(this)" oninput="renderMeme()">
+    </section>
+
+    <hr>
+
+    <section class="download-and-share">
+        <a href="#" onclick="onDownloadImg(this)" download="MyMeme.jpg">Download Meme</a>
     </section>
 </body>
 </html>

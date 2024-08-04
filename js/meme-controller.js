@@ -16,11 +16,17 @@ function renderMeme() {
     clearCanvas()
     const MEME = getMeme()
     const TEXT = document.querySelector('input[name="text"]').value
-    setLineTxt(TEXT)
+    
+    if (TEXT === "" || TEXT === NaN) {
+        setLineTxt('Hello World')
+    } else {
+        setLineTxt(TEXT)
+    }
+    
     
     
     drawImg(MEME.img)
-    setTimeout(() => drawText(TEXT || MEME.text, MEME.pos.x, MEME.pos.y), 100)    
+    setTimeout(() => drawText(TEXT || MEME.text, MEME.pos.x, MEME.pos.y, MEME.color.outline, MEME.color.fill), 100)    
 }
 
 function clearCanvas() {
@@ -35,18 +41,35 @@ function drawImg(img) {
     }
 }
 
-function drawText(text, x = 200, y = 200) {
+function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'white') {
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'brown'
-    gCtx.fillStyle = 'black'
+    gCtx.strokeStyle = outlineColor
+    gCtx.fillStyle = fillColor
     gCtx.font = '40px Arial'
     gCtx.textAlign = 'center'
     gCtx.textBaseLine = 'middle'
 
+    gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 }
 
 function onImgSelect(imgUrl) {
     setImg(imgUrl)
     renderMeme()
+}
+
+function onOutLineColor(elOutline) {
+    const COLOR = elOutline.value
+    setOutlineColor(COLOR)
+}
+
+function onFillColor(elFill) {
+    const COLOR = elFill.value
+    setFillColor(COLOR)
+}
+
+function onDownloadImg(elLink) {
+    const dataURL = gElCanvas.toDataURL()
+    elLink.href = dataURL
+    elLink.download = 'My-Meme'
 }
