@@ -32,6 +32,9 @@
         <input class="second-line-input hidden" type="text" name="text2" placeholder="Enter Text Here" value="" onchange="renderMeme()">
         <button class="remove-line hidden" onclick="onRemoveLine(this)">Remove second line</button>
         <br>
+        <label for="switch-line">Switch Selected Line:</label>
+        <button onclick="onSwitchSelectedLine()">⬆️⬇️</button>
+        <br>
         <label for="color">Text outline color:</label>
         <input type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
         <br>

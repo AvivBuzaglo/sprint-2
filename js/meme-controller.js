@@ -36,7 +36,11 @@ function renderMeme() {
     drawImg(MEME.img)
     setTimeout(() => drawText(TEXT1 || MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
     if(MEME.secondLine) setTimeout(() => drawText(TEXT2 || MEME.text.line2, MEME.pos.line2.x, MEME.pos.line2.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
-
+    
+    if(MEME.selectedLine === 'line1') setTimeout(() => drawRect(MEME.pos.line1.x, MEME.pos.line1.y), 110)
+    if(MEME.selectedLine === 'line2') setTimeout(() => drawRect(MEME.pos.line2.x, MEME.pos.line2.y), 110)
+    
+    
 }
 
 function clearCanvas() {
@@ -61,6 +65,14 @@ function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'whit
 
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
+}
+
+function drawRect(x, y) {
+    gCtx.beginPath()
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = 2
+    gCtx.rect(x - 110, y - 35, 220, 50)
+    gCtx.stroke()
 }
 
 function onImgSelect(imgUrl) {
@@ -94,6 +106,10 @@ function onAddLine(elAddBtn) {
     elLabel.classList.remove('hidden')
     elInput.classList.remove('hidden')
     elRemoveBtn.classList.remove('hidden')
+
+    if(MEME.selectedLine === 'line1') {
+        onSwitchSelectedLine()
+    }
     renderMeme()
 }
 
@@ -108,6 +124,15 @@ function onRemoveLine(elRemoveBtn) {
     elLabel.classList.add('hidden')
     elInput.classList.add('hidden')
     elAddBtn.classList.remove('hidden')
+
+    if(MEME.selectedLine === 'line2') {
+        onSwitchSelectedLine()
+    }
+    renderMeme()
+}
+
+function onSwitchSelectedLine() {
+    setSelectedLine()
     renderMeme()
 }
 
