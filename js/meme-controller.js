@@ -8,11 +8,12 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
+    renderGallery()
     renderMeme()
-    // drawImg()
 }
 
 function renderMeme() {
+    clearCanvas()
     const MEME = getMeme()
     const TEXT = document.querySelector('input[name="text"]').value
     setLineTxt(TEXT)
@@ -20,6 +21,10 @@ function renderMeme() {
     
     drawImg(MEME.img)
     setTimeout(() => drawText(TEXT || MEME.text, MEME.pos.x, MEME.pos.y), 100)    
+}
+
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function drawImg(img) {
@@ -39,4 +44,9 @@ function drawText(text, x = 200, y = 200) {
     gCtx.textBaseLine = 'middle'
 
     gCtx.strokeText(text, x, y)
+}
+
+function onImgSelect(imgUrl) {
+    setImg(imgUrl)
+    renderMeme()
 }

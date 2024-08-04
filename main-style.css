@@ -11,3 +11,14 @@ canvas {
     align-self: center;
     justify-self: center;
 }
+
+.gallery {
+    display: grid;
+    grid-auto-flow: column;
+    padding-block-end: 30px;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
