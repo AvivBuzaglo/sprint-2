@@ -9,7 +9,7 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
 
     renderGallery()
-    renderMeme()
+    // renderMeme()
 }
 
 function renderMeme() {
@@ -91,19 +91,20 @@ function onDraw(ev) {
 }
 
 function onImgSelect(imgUrl) {
-    const elGallery = document.querySelector('.gallery')
-    const elGalleryNav = document.querySelector('.gallery-nav')
-    const elEditor = document.querySelector('.editor')
-    const elCanvas = document.querySelector('.canvas-container')
-    const elCategories = document.querySelector('.categories')
+    // const elGallery = document.querySelector('.gallery')
+    // const elGalleryNav = document.querySelector('.gallery-nav')
+    // const elEditor = document.querySelector('.editor')
+    // const elCanvas = document.querySelector('.canvas-container')
+    // const elCategories = document.querySelector('.categories')
     
     setImg(imgUrl)
+    hiddenToggle()
 
-    elGallery.classList.add('hidden')
-    elGalleryNav.classList.add('hidden')
-    elCategories.classList.add('hidden')
-    elEditor.classList.remove('hidden')
-    elCanvas.classList.remove('hidden')
+    // elGallery.classList.add('hidden')
+    // elGalleryNav.classList.add('hidden')
+    // elCategories.classList.add('hidden')
+    // elEditor.classList.remove('hidden')
+    // elCanvas.classList.remove('hidden')
     renderMeme()
 }
 
@@ -168,3 +169,18 @@ function onDownloadImg(elLink) {
     elLink.href = dataURL
     elLink.download = 'My-Meme'
 }
+
+function hiddenToggle() {
+    const elGallery = document.querySelector('.gallery')
+    const elGalleryNav = document.querySelector('.gallery-nav')
+    const elEditor = document.querySelector('.editor')
+    const elCanvas = document.querySelector('.canvas-container')
+    const elCategories = document.querySelector('.categories')
+    
+    elGallery.classList.toggle('hidden')
+    elGalleryNav.classList.toggle('hidden')
+    elEditor.classList.toggle('hidden')
+    elCanvas.classList.toggle('hidden')
+    elCategories.classList.toggle('hidden')
+}
+

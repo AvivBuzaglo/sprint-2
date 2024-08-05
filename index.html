@@ -14,7 +14,7 @@
     <header class="main-header">
         <div class="logo">MemeGEN</div>
         <nav class="main-nav">
-            <a href="#" class="gallery-link">Gallery</a>
+            <a href="#" class="gallery-link" onclick="hiddenToggle()">Gallery</a>
             <a href="#" class="about">About</a>
         </nav>
     </header>
@@ -23,12 +23,12 @@
         <nav class="gallery-nav">
             <input type="search" placeholder="Search" class="search-bar">
             <div class="categories">
-                <a href="#">Funny</a>
-                <a href="#">Animal</a>
-                <a href="#">Men</a>
-                <a href="#">Women</a>
-                <a href="#">Comic</a>
-                <a href="#">Smile</a>
+                <a href="#" onclick="renderGalleryByTag('funny')">Funny</a>
+                <a href="#" onclick="renderGalleryByTag('animal')">Animal</a>
+                <a href="#" onclick="renderGalleryByTag('baby')">Babys</a>
+                <a href="#" onclick="renderGalleryByTag('men')">Men</a>
+                <a href="#" onclick="renderGalleryByTag('cute')">Cute</a>
+                <a href="#" onclick="renderGalleryByTag('smile')">Smile</a>
             </div>
         </nav>
     </section>

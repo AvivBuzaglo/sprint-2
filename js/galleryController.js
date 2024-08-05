@@ -1,35 +1,40 @@
 'use strict'
 
 let gGallery = [
-    {id: 'img1', url: 'meme-imgs/meme-imgs-(square)/1.jpg'},
-    {id: 'img2', url: 'meme-imgs/meme-imgs-(square)/2.jpg'},
-    {id: 'img3', url: 'meme-imgs/meme-imgs-(square)/3.jpg'},
-    {id: 'img4', url: 'meme-imgs/meme-imgs-(square)/4.jpg'},
-    {id: 'img5', url: 'meme-imgs/meme-imgs-(square)/5.jpg'},
-    {id: 'img6', url: 'meme-imgs/meme-imgs-(square)/6.jpg'},
-    {id: 'img7', url: 'meme-imgs/meme-imgs-(square)/7.jpg'},
-    {id: 'img8', url: 'meme-imgs/meme-imgs-(square)/8.jpg'},
-    {id: 'img9', url: 'meme-imgs/meme-imgs-(square)/9.jpg'},
-    {id: 'img10', url: 'meme-imgs/meme-imgs-(square)/10.jpg'},
-    {id: 'img11', url: 'meme-imgs/meme-imgs-(square)/11.jpg'},
-    {id: 'img12', url: 'meme-imgs/meme-imgs-(square)/12.jpg'},
-    {id: 'img13', url: 'meme-imgs/meme-imgs-(square)/13.jpg'},
-    {id: 'img14', url: 'meme-imgs/meme-imgs-(square)/14.jpg'},
-    {id: 'img15', url: 'meme-imgs/meme-imgs-(square)/15.jpg'},
-    {id: 'img16', url: 'meme-imgs/meme-imgs-(square)/16.jpg'},
-    {id: 'img17', url: 'meme-imgs/meme-imgs-(square)/17.jpg'},
-    {id: 'img18', url: 'meme-imgs/meme-imgs-(square)/18.jpg'},
+    {id: 'img1', url: 'meme-imgs/meme-imgs-(square)/1.jpg', tag: ['men', 'funny'] }, 
+    {id: 'img2', url: 'meme-imgs/meme-imgs-(square)/2.jpg', tag: ['animal', 'cute']},
+    {id: 'img3', url: 'meme-imgs/meme-imgs-(square)/3.jpg', tag: ['animal', 'baby']},
+    {id: 'img4', url: 'meme-imgs/meme-imgs-(square)/4.jpg', tag: ['animal', 'cute']},
+    {id: 'img5', url: 'meme-imgs/meme-imgs-(square)/5.jpg', tag: ['baby', 'funny']},
+    {id: 'img6', url: 'meme-imgs/meme-imgs-(square)/6.jpg', tag: ['men', 'smile']},
+    {id: 'img7', url: 'meme-imgs/meme-imgs-(square)/7.jpg', tag: ['baby', 'funny']},
+    {id: 'img8', url: 'meme-imgs/meme-imgs-(square)/8.jpg', tag: ['men', 'smile']},
+    {id: 'img9', url: 'meme-imgs/meme-imgs-(square)/9.jpg', tag: ['baby', 'funny']},
+    {id: 'img10', url: 'meme-imgs/meme-imgs-(square)/10.jpg', tag: ['men', 'smile']},
+    {id: 'img11', url: 'meme-imgs/meme-imgs-(square)/11.jpg', tag: ['men', 'funny']},
+    {id: 'img12', url: 'meme-imgs/meme-imgs-(square)/12.jpg', tag: ['men', 'smile']},
+    {id: 'img13', url: 'meme-imgs/meme-imgs-(square)/13.jpg', tag: ['men', 'smile']},
+    {id: 'img14', url: 'meme-imgs/meme-imgs-(square)/14.jpg', tag: ['men', 'funny']},
+    {id: 'img15', url: 'meme-imgs/meme-imgs-(square)/15.jpg', tag: ['men', 'smile']},
+    {id: 'img16', url: 'meme-imgs/meme-imgs-(square)/16.jpg', tag: ['men', 'smile']},
+    {id: 'img17', url: 'meme-imgs/meme-imgs-(square)/17.jpg', tag: ['men']},
+    {id: 'img18', url: 'meme-imgs/meme-imgs-(square)/18.jpg', tag: ['funny', 'cute']}
 ]
 
-function renderGallery() {
+function renderGallery(gallery = gGallery) {
     const elGallery = document.querySelector('.gallery')
-    const strHtml = gGallery.map(image => `
+    const strHtml = gallery.map(image => `
         <div class='img-gallery ${image.id}'>
-        <button class="btn" onClick="onImgSelect('${image.url}')">
+        <button class="gallery-btn" onClick="onImgSelect('${image.url}')">
         <img src=${image.url}>
         </button>
         </div>
     `)
-    
+
     elGallery.innerHTML = strHtml.join('')
+}
+
+function renderGalleryByTag(byTag) {
+    const galleryByTag = gGallery.filter(image => image.tag.includes(byTag))
+    renderGallery(galleryByTag)
 }
