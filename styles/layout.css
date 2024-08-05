@@ -1,0 +1,88 @@
+
+body {
+    display: grid;
+    grid-template-rows: 75px 130px 568px;
+    gap: 13px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 10% 10% auto 10% 10% 10%;
+    height: 40px;
+    grid-column: 1/4;
+}
+
+.logo {
+    display: grid;
+    grid-column: 2/3;
+}
+
+.main-nav{
+    display: grid;
+    grid-column: 4/6; 
+}
+
+.gallery {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 30px;
+    margin-inline-start: 30px;
+    margin-inline-end: 30px;
+    overflow-x: hidden;
+    grid-row: 3/4;
+}
+
+.gallery-nav{
+    display: grid;
+    grid-auto-flow: column;
+    justify-items: start;
+    align-items: center;
+}
+
+.search-bar{
+    height: 60px;
+    width: 540px;
+    margin-inline-start: 25px;
+    margin-block-start: 25px;
+    border-radius: 100px;
+}
+
+.categories{
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.canvas-container {
+    display: grid;
+    grid-row: 3/4;
+    justify-content: start;
+}
+
+canvas {
+    margin-inline-start: 100px;
+    margin-inline-end: 90px;
+}
+
+.editor{
+    display: grid;
+    grid-column: 2/4;
+    grid-row: 3/4;
+
+    height: 450px;
+}
+
+img {
+    width: 170px;
+    height: 170px;
+}
+
+.about {
+    grid-column: 5/6;
+}
+
+.hidden {
+    display: none;
+}

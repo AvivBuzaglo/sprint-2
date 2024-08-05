@@ -91,7 +91,19 @@ function onDraw(ev) {
 }
 
 function onImgSelect(imgUrl) {
+    const elGallery = document.querySelector('.gallery')
+    const elGalleryNav = document.querySelector('.gallery-nav')
+    const elEditor = document.querySelector('.editor')
+    const elCanvas = document.querySelector('.canvas-container')
+    const elCategories = document.querySelector('.categories')
+    
     setImg(imgUrl)
+
+    elGallery.classList.add('hidden')
+    elGalleryNav.classList.add('hidden')
+    elCategories.classList.add('hidden')
+    elEditor.classList.remove('hidden')
+    elCanvas.classList.remove('hidden')
     renderMeme()
 }
 

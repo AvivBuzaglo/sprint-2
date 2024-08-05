@@ -3,26 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main-style.css">
+    <link rel="stylesheet" href="styles/main-style.css">
+    <link rel="stylesheet" href="styles/layout.css">
     <script src="js/meme-service.js"></script>
     <script src="js/galleryController.js"></script>
     <script src="js/meme-controller.js"></script>
     <title>Meme Generator</title>
 </head>
 <body onload="onInit()">
-    <header><h1>Meme Generator</h1></header>
+    <header class="main-header">
+        <div class="logo">MemeGEN</div>
+        <nav class="main-nav">
+            <a href="#" class="gallery-link">Gallery</a>
+            <a href="#" class="about">About</a>
+        </nav>
+    </header>
+    
+    <section>
+        <nav class="gallery-nav">
+            <input type="search" placeholder="Search" class="search-bar">
+            <div class="categories">
+                <a href="#">Funny</a>
+                <a href="#">Animal</a>
+                <a href="#">Men</a>
+                <a href="#">Women</a>
+                <a href="#">Comic</a>
+                <a href="#">Smile</a>
+            </div>
+        </nav>
+    </section>
+
     <section class="gallery"> 
     </section>
 
-    <hr>
-
-    <div class="canvas-container">
+    <div class="canvas-container hidden">
         <canvas height="450" width="450" onclick="onDraw(event)"></canvas>
     </div>
-    
-    <hr>
 
-    <section class="editor">
+    <section class="editor hidden">
         <h2 class="editor-header">Editor</h2>
         <label for="text">Enter your MEME text(Upper line):</label>
         <input type="text" name="text1" placeholder="Enter Text Here" value="" onchange="renderMeme()">
@@ -45,9 +63,7 @@
         <input type="number" name="font-size" value="40" oninput="onFontSize(this)" onchange="renderMeme()">
     </section>
 
-    <hr>
-
-    <section class="download-and-share">
+    <section class="download-and-share hidden">
         <a href="#" onclick="onDownloadImg(this)" download="MyMeme.jpg">Download Meme</a>
     </section>
 </body>
