@@ -8,6 +8,7 @@
     <script src="js/meme-service.js"></script>
     <script src="js/galleryController.js"></script>
     <script src="js/meme-controller.js"></script>
+    <script src="js/download-share.js"></script>
     <title>Meme Generator</title>
 </head>
 <body onload="onInit()">
@@ -46,21 +47,35 @@
         
         <div class="lines-btns">
             <button class="add-line editor-btn" onclick="onAddLine()">+</button>
-            <button class="switch-line editor-btn" onclick="onSwitchSelectedLine()">⬆️⬇️</button>
-            <button class="remove-line editor-btn" onclick="onRemoveLine()">Remove line</button>
+            <button class="switch-line editor-btn" onclick="onSwitchSelectedLine()">⇅</button>
+            <button class="remove-line editor-btn" onclick="onRemoveLine()">🗑️</button>
         </div>
 
         <div class="designe-btns">
-            <button class="font-size-increase" onclick="onFontSizeIncrease()">A+</button>
-            <button class="font-size-decrease" onclick="onFontSizeDecrease()">A-</button>
-            <input class="outline-color editor-btn" type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
-            <input class="fill-color editor-btn" type="color" name="fill" value="#FFFFFF" onchange="onFillColor(this)" oninput="renderMeme()">    
+            <button class="editor-btn font-size-increase" onclick="onFontSizeIncrease()">A+</button>
+            <button class="editor-btn font-size-decrease" onclick="onFontSizeDecrease()">A-</button>
+            <button class="editor-btn aglin start">←</button>
+            <button class="editor-btn aglin center">—</button>
+            <button class="editor-btn aglin start">→</button>
+            <input list="fonts" class="editor-list">
+            <datalist id="fonts"><option value="Arial"><option value="font"></option></option></datalist>
+            <button class="editor-btn fake-btns">S</button>
+            <input class="editor-btn outline-color" type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
+            <button class="editor-btn fake-btnf">F</button>
+            <input class="editor-btn fill-color" type="color" name="fill" value="#FFFFFF" onchange="onFillColor(this)" oninput="renderMeme()">    
         </div>        
 
-    </section>
+        <div class="stickers-container">
+            <button class="sticker" onclick="check()">😂</button>
+            <button class="sticker" onclick="check()">😎</button>
+            <button class="sticker" onclick="check()">😁</button>
+            <button class="sticker" onclick="check()">🤬</button>
+        </div>
 
-    <section class="download-and-share hidden">
-        <a href="#" onclick="onDownloadImg(this)" download="MyMeme.jpg">Download Meme</a>
+        <div class="download-and-share">
+            <button class="share-btn" onclick="onUploadImg()">Share on Facebook!</button>
+            <a href="#" class="download-btn" onclick="onDownloadImg(this)" download="MyMeme.jpg">download</a>
+        </div>
     </section>
 </body>
 </html>

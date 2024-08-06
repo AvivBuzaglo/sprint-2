@@ -72,7 +72,7 @@ canvas {
     grid-row: 3/4;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 2fr 1.5fr 1.5fr;
-    /* grid-auto-flow: row; */
+    gap: 10px;
     align-content: center;
     justify-content: center;
 
@@ -93,11 +93,48 @@ canvas {
 
 .designe-btns {
     display: grid;
-    grid-auto-flow: column;
-
-    justify-content: center;
-    align-items: center;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
     gap: 25px;
+}
+
+.editor-list {
+    grid-column: 1/4;
+    grid-row: 2/3;
+    justify-self: stretch;
+}
+
+.outline-color, .fake-btns{
+    grid-column: 4/5;
+    grid-row: 2/3;
+}
+
+.fill-color, .fake-btnf {
+    grid-column: 5/6;
+    grid-row: 2/3;
+}
+
+.stickers-container{
+    display: grid;
+    grid-row: 4/5;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.download-and-share {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.download-btn {
+    grid-column: 2/3;
 }
 
 img {

@@ -57,6 +57,10 @@ function drawImg(img) {
     }
 }
 
+function check() {
+    console.log('hey');
+}
+
 function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'white', fontSize = '40px Arial') {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = outlineColor
