@@ -2,6 +2,7 @@
 
 let gElCanvas
 let gCtx
+let gStartPos
 let gCurrShape = 'text'
 
 function onInit() {
@@ -9,11 +10,11 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
 
     renderGallery()
-    // renderMeme()
+    addMouseListeners()
 }
 
 function renderMeme() {
-    clearCanvas()
+    // clearCanvas()
     const MEME = getMeme()
     const TEXT = document.querySelector('input[name="text"]').value
 
@@ -39,8 +40,9 @@ function renderMeme() {
         setTimeout(() => drawText(TEXT || MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
     }
     
-    if(MEME.selectedLine === 'line1') setTimeout(() => drawRect(MEME.pos.line1.x, MEME.pos.line1.y), 110)
-    if(MEME.selectedLine === 'line2') setTimeout(() => drawRect(MEME.pos.line2.x, MEME.pos.line2.y), 110)
+    setTimeout(clacTextSize, 108)
+    if(MEME.selectedLine === 'line1') setTimeout(() => drawRect(MEME.pos.line1.x, MEME.pos.line1.y, MEME.textSize.line1.width, MEME.textSize.line1.height), 110)
+    if(MEME.selectedLine === 'line2') setTimeout(() => drawRect(MEME.pos.line2.x, MEME.pos.line2.y, MEME.textSize.line2.width, MEME.textSize.line2.height), 110)
 }
 
 function clearCanvas() {
@@ -68,18 +70,16 @@ function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'whit
     gCtx.strokeText(text, x, y)
 }
 
-function drawRect(x, y) {
+function drawRect(x, y, lineWidth, lineHeight) {
     gCtx.beginPath()
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 2
-    gCtx.rect(x - 110, y - 37, 220, 50)
+    gCtx.rect(x - (lineWidth / 2) - 15, y - lineHeight, lineWidth + 30, lineHeight + 10)
     gCtx.stroke()
 }
 
 function onDraw(ev) {
     const {offsetX, offsetY} = ev
-    console.log(offsetX, offsetY);
-    
     const MEME = getMeme()
     const line1 = MEME.pos.line1
     const line2 = MEME.pos.line2
@@ -89,8 +89,8 @@ function onDraw(ev) {
     const line1_y_calc = {up: line1.y - line1_size.height, down: gElCanvas.height - line1.y} 
     const line2_x_calc = {left: line2.x - (line2_size.width / 2), right: line2.x + (line2_size.width / 2)} 
     const line2_y_calc = {up: line2.y - line2_size.height, down: gElCanvas.height - line2.y}
-    console.log('line 1: ' ,line1_x_calc, '\n', line1_y_calc);
-    console.log('line 2: ' ,line2_x_calc, '\n', line2_y_calc);
+
+    setTextSize(line1_size.width, line2_size.width)
      
     if((line1_x_calc.left <= offsetX) && (offsetX <= line1_x_calc.right) && (line1_y_calc.up <= offsetY) && (offsetY <= line1.y)) {
         setSelectedByClick('line1')
@@ -105,18 +105,6 @@ function onDraw(ev) {
         renderMeme()
         return
     }
-
-    // if((line1.x - 100) <= offsetX && (line1.x + 100) >= offsetX && (line1.y - 30) <= offsetY && line1.y >= offsetY) {
-    //     setSelectedByClick('line1')
-    //     document.querySelector('input[name="text"]').value = ''
-    //     renderMeme()
-    // }
-    // if((line2.x - 100) <= offsetX && (line2.x + 100) >= offsetX && (line2.y - 30) <= offsetY && line2.y >= offsetY) {
-    //     if(!MEME.secondLine) return 
-    //     setSelectedByClick('line2')
-    //     document.querySelector('input[name="text"]').value = ''
-    //     renderMeme()
-    // }
 }
 
 function onImgSelect(imgUrl) {
@@ -140,6 +128,7 @@ function onFontSizeIncrease() {
     const sizeCalc = currSize + 1
     const newSize = sizeCalc.toString() + 'px'
     setFontSize(newSize)
+    clacTextSize()
     renderMeme()
 }
 
@@ -148,15 +137,20 @@ function onFontSizeDecrease() {
     const sizeCalc = currSize - 1
     const newSize = sizeCalc.toString() + 'px'
     setFontSize(newSize)
+    clacTextSize()
     renderMeme()
 }
 
-function onFontSize(elFontSize) {
-    const SIZE = elFontSize.value + 'px'
-    setFontSize(SIZE)
+function clacTextSize() {
+    const MEME = getMeme()
+    const text1 = MEME.text.line1
+    const text2 = MEME.text.line2
+    const text1_size = gCtx.measureText(text1).width
+    const text2_size = gCtx.measureText(text2).width
+    setTextSize(text1_size, text2_size)
 }
 
-function addLine() {
+function onAddLine() {
     const MEME = getMeme()
     if(MEME.secondLine) return
     
@@ -168,7 +162,7 @@ function addLine() {
     renderMeme()
 }
 
-function removeLine() {
+function onRemoveLine() {
     const MEME = getMeme()
     if(!MEME.secondLine) return
 
@@ -179,42 +173,6 @@ function removeLine() {
     }
     renderMeme()
 }
-
-// function onAddLine(elAddBtn) {
-//     const MEME = getMeme()
-//     const elLabel = document.querySelector('.second-line')
-//     const elInput = document.querySelector('.second-line-input')
-//     const elRemoveBtn = document.querySelector('.remove-line')
-    
-//     MEME.secondLine = true
-//     elAddBtn.classList.add('hidden')
-//     elLabel.classList.remove('hidden')
-//     elInput.classList.remove('hidden')
-//     elRemoveBtn.classList.remove('hidden')
-
-//     if(MEME.selectedLine === 'line1') {
-//         onSwitchSelectedLine()
-//     }
-//     renderMeme()
-// }
-
-// function onRemoveLine(elRemoveBtn) {
-//     const MEME = getMeme()
-//     const elLabel = document.querySelector('.second-line')
-//     const elInput = document.querySelector('.second-line-input')
-//     const elAddBtn = document.querySelector('.add-line')
-    
-//     MEME.secondLine = false
-//     elRemoveBtn.classList.add('hidden')
-//     elLabel.classList.add('hidden')
-//     elInput.classList.add('hidden')
-//     elAddBtn.classList.remove('hidden')
-
-//     if(MEME.selectedLine === 'line2') {
-//         onSwitchSelectedLine()
-//     }
-//     renderMeme()
-// }
 
 function onSwitchSelectedLine() {
     document.querySelector('input[name="text"]').value = ''
@@ -242,17 +200,68 @@ function hiddenToggle() {
     elCategories.classList.toggle('hidden')
 }
 
-function calcLines() {
-    const MEME = getMeme()
-    const line1 = MEME.pos.line1
-    const line2 = MEME.pos.line2
-    const line1_size = MEME.textSize.line1
-    const line2_size = MEME.textSize.line2
-    const line1_x_calc = {left: line1.x - (line1_size.width / 2), right: line1.x + (line1_size.width / 2)} 
-    const line1_y_calc = {up: line1.y - line1_size.height, down: gElCanvas.height - line1.y} 
-    const line2_x_calc = {left: line2.x - (line2_size.width / 2), right: line2.x + (line2_size.width / 2)} 
-    const line2_y_calc = {up: line2.y - line2_size.height, down: gElCanvas.height - line2.y}
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
 
-    setTextSize(line1_size, line2_size)
+function onDown(ev) {
+    const pos = getEvPos(ev)
+    
+    if(!isLineClicked(pos)) return
+    
+    gStartPos = pos
+    
+    document.body.style.cursor = 'grabbing'
+}
+
+function onUp() {
+    setLineDragOff()
+    document.body.style.cursor = 'grab'
+}
+
+
+function onMove(ev) {
+    const MEME = getMeme()
+    const line1_isDrag = MEME.isDrag.line1
+    const line2_isDrag = MEME.isDrag.line2 
+    if (!line1_isDrag && !line2_isDrag) return
+
+    if(line1_isDrag) {
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+
+        moveLine1(dx, dy)
+        gStartPos = pos
+        renderMeme()
+    }
+
+    if(line2_isDrag){
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+
+        moveLine2(dx, dy)
+        gStartPos = pos
+        renderMeme()
+    }
+}
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+        if (['touchstart', 'touchmove', 'touchend'].includes(ev.type)) {
+            ev.preventDefault()
+            ev = ev.changedTouches[0]
+            pos = {
+                x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+                y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+            }
+        }
+    return pos
 }
 
