@@ -37,6 +37,26 @@ canvas {
     justify-self: center;
 }
 
+.editor {
+    background-color: grey;
+    margin-inline-end: 50px;
+    margin-block-start: 40px;
+
+    border-radius: 40px;
+}
+
+.designe-btns {
+    background-color:rgb(37, 230, 217);
+    border-radius: 25px;
+}
+
+.editor-btn {
+    height: 50px;
+    width: 50px;
+
+    border-radius: 10px;
+}
+
 .hidden {
     display: none;
 }

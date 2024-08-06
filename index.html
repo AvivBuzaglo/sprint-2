@@ -29,6 +29,7 @@
                 <a href="#" onclick="renderGalleryByTag('men')">Men</a>
                 <a href="#" onclick="renderGalleryByTag('cute')">Cute</a>
                 <a href="#" onclick="renderGalleryByTag('smile')">Smile</a>
+                <a href="" onclick="renderGallery()">Clear filter</a>
             </div>
         </nav>
     </section>
@@ -41,26 +42,21 @@
     </div>
 
     <section class="editor hidden">
-        <h2 class="editor-header">Editor</h2>
-        <label for="text">Enter your MEME text(Upper line):</label>
-        <input type="text" name="text1" placeholder="Enter Text Here" value="" onchange="renderMeme()">
-        <br>
-        <button class="add-line" onclick="onAddLine(this)">Add secont line</button>
-        <label class="second-line hidden" for="text">Enter your MEME text(Bottom line):</label>
-        <input class="second-line-input hidden" type="text" name="text2" placeholder="Enter Text Here" value="" onchange="renderMeme()">
-        <button class="remove-line hidden" onclick="onRemoveLine(this)">Remove second line</button>
-        <br>
-        <label for="switch-line">Switch Selected Line:</label>
-        <button onclick="onSwitchSelectedLine()">⬆️⬇️</button>
-        <br>
-        <label for="color">Text outline color:</label>
-        <input type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
-        <br>
-        <label for="color">Text fill color:</label>
-        <input type="color" name="fill" value="#FFFFFF" onchange="onFillColor(this)" oninput="renderMeme()">
-        <br>
-        <label for="font-size">Change font size:</label>
-        <input type="number" name="font-size" value="40" oninput="onFontSize(this)" onchange="renderMeme()">
+        <input class="text-input" type="text" name="text" placeholder="Enter Text Here" value="" onchange="renderMeme()">
+        
+        <div class="lines-btns">
+            <button class="add-line editor-btn" onclick="addLine()">+</button>
+            <button class="switch-line editor-btn" onclick="onSwitchSelectedLine()">⬆️⬇️</button>
+            <button class="remove-line editor-btn" onclick="removeLine()">Remove line</button>
+        </div>
+
+        <div class="designe-btns">
+            <button class="font-size-increase" onclick="onFontSizeIncrease()">A+</button>
+            <button class="font-size-decrease" onclick="onFontSizeDecrease()">A-</button>
+            <input class="outline-color editor-btn" type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
+            <input class="fill-color editor-btn" type="color" name="fill" value="#FFFFFF" onchange="onFillColor(this)" oninput="renderMeme()">    
+        </div>        
+
     </section>
 
     <section class="download-and-share hidden">
