@@ -13,6 +13,7 @@
     <title>Meme Generator</title>
 </head>
 <body onload="onInit()">
+    
     <header class="main-header">
         <div class="logo">MemeGEN</div>
         <nav class="main-nav">
@@ -21,20 +22,18 @@
         </nav>
     </header>
     
-    <section>
-        <nav class="gallery-nav">
-            <input type="search" placeholder="Search" class="search-bar">
-            <div class="categories">
-                <a href="#" onclick="renderGalleryByTag('funny')">Funny</a>
-                <a href="#" onclick="renderGalleryByTag('animal')">Animal</a>
-                <a href="#" onclick="renderGalleryByTag('baby')">Babys</a>
-                <a href="#" onclick="renderGalleryByTag('men')">Men</a>
-                <a href="#" onclick="renderGalleryByTag('cute')">Cute</a>
-                <a href="#" onclick="renderGalleryByTag('smile')">Smile</a>
-                <a href="" onclick="renderGallery()">Clear filter</a>
-            </div>
-        </nav>
-    </section>
+    <nav class="gallery-nav">
+        <input type="search" placeholder="Search" class="search-bar">
+        <div class="categories">
+            <a href="#" onclick="renderGalleryByTag('funny')">Funny</a>
+            <a href="#" onclick="renderGalleryByTag('animal')">Animal</a>
+            <a href="#" onclick="renderGalleryByTag('baby')">Babys</a>
+            <a href="#" onclick="renderGalleryByTag('men')">Men</a>
+            <a href="#" onclick="renderGalleryByTag('cute')">Cute</a>
+            <a href="#" onclick="renderGalleryByTag('smile')">Smile</a>
+            <a href="" onclick="renderGallery()">Clear filter</a>
+        </div>
+    </nav>
 
     <section class="gallery"> 
     </section>
@@ -78,5 +77,6 @@
             <a href="#" class="download-btn" onclick="onDownloadImg(this)" download="MyMeme.jpg">download</a>
         </div>
     </section>
+
 </body>
 </html>

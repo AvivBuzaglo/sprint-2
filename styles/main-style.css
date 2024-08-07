@@ -19,6 +19,11 @@ header {
     margin-block-start: 1rem;
 }
 
+.gallery-nav {
+    margin-block-end: 1.75rem;
+    margin-inline-end: 1.563rem;
+}
+
 .categories {
     height: 3.75rem;
     width: 36.875rem;
@@ -39,6 +44,7 @@ canvas {
     background-color: grey;
     margin-inline-end: 3.125rem;
     margin-block-start: 2.5rem;
+    margin-block-end: 2rem;
 
     border-radius: 2.5rem;
 }
