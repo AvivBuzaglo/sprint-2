@@ -1,15 +1,15 @@
 
 body {
     display: grid;
-    grid-template-rows: 75px 130px 568px;
-    gap: 13px;
+    grid-template-rows: 4.688rem 8.125rem 35.5rem;
+    gap: 0.813rem;
 }
 
 header {
     display: grid;
     grid-template-columns: 10% 10% auto 10% 10% 10%;
-    height: 40px;
     grid-column: 1/4;
+    grid-row: 1/2;
 }
 
 .logo {
@@ -26,9 +26,9 @@ header {
     display: grid;
     grid-auto-flow: column;
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 30px;
-    margin-inline-start: 30px;
-    margin-inline-end: 30px;
+    gap: 1.875rem;
+    margin-inline-start: 1.875rem;
+    margin-inline-end: 1.875rem;
     overflow-x: hidden;
     grid-row: 3/4;
 }
@@ -41,11 +41,11 @@ header {
 }
 
 .search-bar{
-    height: 60px;
-    width: 540px;
-    margin-inline-start: 25px;
-    margin-block-start: 25px;
-    border-radius: 100px;
+    height: 3.75rem;
+    width: 33.75rem;
+    margin-inline-start: 1.563rem;
+    margin-block-start: 1.563rem;
+    border-radius: 6.25rem;
 }
 
 .categories{
@@ -62,8 +62,8 @@ header {
 }
 
 canvas {
-    margin-inline-start: 100px;
-    margin-inline-end: 90px;
+    margin-inline-start: 6.25rem;
+    margin-inline-end: 5.625rem;
 }
 
 .editor{
@@ -72,15 +72,15 @@ canvas {
     grid-row: 3/4;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 2fr 1.5fr 1.5fr;
-    gap: 10px;
+    gap: 0.625rem;
     align-content: center;
     justify-content: center;
 
-    height: 450px;
-    padding-inline-start: 40px;
-    padding-inline-end: 40px;
-    padding-block-start: 20px;
-    padding-block-end: 20px;
+    height: 28.125rem;
+    padding-inline-start: 2.5rem;
+    padding-inline-end: 2.5rem;
+    padding-block-start: 1.25rem;
+    padding-block-end: 1.25rem;
 }
 
 .text-input {
@@ -97,7 +97,7 @@ canvas {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     justify-items: center;
-    gap: 25px;
+    gap: 1.563rem;
 }
 
 .editor-list {
@@ -130,7 +130,7 @@ canvas {
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     align-items: center;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .download-btn {
@@ -138,8 +138,8 @@ canvas {
 }
 
 img {
-    width: 170px;
-    height: 170px;
+    width: 10.625rem;
+    height: 10.625rem;
 }
 
 .about {

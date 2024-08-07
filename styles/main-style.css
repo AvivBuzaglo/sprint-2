@@ -6,56 +6,54 @@ header {
     background: rgb(0,115,166);
     background: linear-gradient(90deg, rgba(0,115,166,1) 0%, rgba(9,121,35,1) 35%, rgba(0,255,192,1) 100%);
     border-radius: 100px ;
+    height: 100%;
 }
 
 .logo{
-    font-size: 20px;
-    margin-block-start: 7px;
+    font-size: 2rem;
+    margin-block-start: 1rem;
 }
 
 .main-nav{
-    font-size: 20px;
-    
-    margin-block-start: 7px;
-    margin-inline-start: 10px;
-
+    font-size: 2rem;
+    margin-block-start: 1rem;
 }
 
 .categories {
-    height: 60px;
-    width: 590px;
-    border: 2px solid black;
-    border-radius: 100px;
-    padding-inline-start: 40px;
-    margin-inline-start: 25px;
-    margin-block-start: 25px;
+    height: 3.75rem;
+    width: 36.875rem;
+    border: 0.125rem solid black;
+    border-radius: 6.25rem;
+    padding-inline-start: 2.5rem;
+    margin-inline-start: 1.563rem;
+    margin-block-start: 1.563rem;
 }
 
 canvas {
-    border: 2px solid black;
+    border: 0.125rem solid black;
     align-self: center;
     justify-self: center;
 }
 
 .editor {
     background-color: grey;
-    margin-inline-end: 50px;
-    margin-block-start: 40px;
+    margin-inline-end: 3.125rem;
+    margin-block-start: 2.5rem;
 
-    border-radius: 40px;
+    border-radius: 2.5rem;
 }
 
 .designe-btns {
     background-color:rgb(37, 230, 217);
-    border-radius: 25px;
-    padding: 20px;
+    border-radius: 1.563rem;
+    padding: 1.25rem;
 }
 
 .editor-btn {
-    height: 50px;
-    width: 50px;
+    height: 3.125rem;
+    width: 3.125rem;
 
-    border-radius: 10px;
+    border-radius: 0.625rem;
 }
 
 .outline-color, .fill-color {
@@ -66,13 +64,13 @@ canvas {
     background-color: whitesmoke;
     height: 100%;
     width: 100%;
-    border-radius: 25px;
+    border-radius: 1.563rem;
 }
 
 .sticker{
-    width: 30px;
-    height: 30px;
-    font-size: 50px;
+    width: 1.875rem;
+    height: 1.875rem;
+    font-size: 3.125rem;
     display: grid;
     justify-content: center;
     align-content: center;  
@@ -83,8 +81,8 @@ canvas {
     background-color: rebeccapurple;
     width: 100%;
     height: 50%;
-    padding: 8px;
-    border-radius: 10px;
+    padding: 0.5rem;
+    border-radius: 0.625rem;
     text-align: center;
     color: white;
     font-weight: bold;
