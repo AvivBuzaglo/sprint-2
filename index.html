@@ -24,11 +24,11 @@
     </header>
     
     <nav class="gallery-nav">
-        <input type="search" placeholder="Search" class="search-bar">
+        <input type="search" id="search" placeholder="Search Key Words" class="search-bar" onchange="onSearch(this)">
         <div class="categories">
             <a href="#" onclick="renderGalleryByTag('funny')">Funny</a>
             <a href="#" onclick="renderGalleryByTag('animal')">Animal</a>
-            <a href="#" onclick="renderGalleryByTag('baby')">Babys</a>
+            <a href="#" onclick="renderGalleryByTag('baby')">Baby</a>
             <a href="#" onclick="renderGalleryByTag('men')">Men</a>
             <a href="#" onclick="renderGalleryByTag('cute')">Cute</a>
             <a href="#" onclick="renderGalleryByTag('smile')">Smile</a>
@@ -59,7 +59,7 @@
             <button class="editor-btn aglin center">—</button>
             <button class="editor-btn aglin start">→</button>
             <input list="fonts" class="editor-list">
-            <datalist id="fonts"><option value="Arial"><option value="font"></option></option></datalist>
+            <datalist id="fonts"><option value="Arial"></option><option value="font"></option></datalist>
             <button class="editor-btn fake-btns">S</button>
             <input class="editor-btn outline-color" type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
             <button class="editor-btn fake-btnf">F</button>

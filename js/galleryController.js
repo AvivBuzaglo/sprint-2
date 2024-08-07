@@ -51,3 +51,12 @@ function renderMyMemes() {
     `)
     elMyGallery.innerHTML = strHtml.join('')
 }
+
+function onSearch(elInput) {
+    const text = elInput.value
+    const keyWords = ['funny', 'animal', 'baby', 'men', 'cute', 'smile']
+    if(keyWords.includes(text.toLowerCase())) {
+        renderGalleryByTag(text.toLowerCase())
+        return
+    } else prompt(`${text} is not a keyword`)
+}
