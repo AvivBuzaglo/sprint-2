@@ -44,7 +44,7 @@ function renderMyMemes() {
     const MY_MEMES = getFromStorage()
     const strHtml = MY_MEMES.map(image => `
         <div class='my-gallery ${image.id}'>
-        <button class="gallery-btn" onClick="onMyImgSelect('${image.img}')">
+        <button class="gallery-btn" onClick="onMyImgSelect('${image.img}', '${image.id}')">
         <img src=${image.galleryDisplay}>
         </button>
         </div>

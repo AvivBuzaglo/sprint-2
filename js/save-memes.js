@@ -2,12 +2,12 @@
 
 const SAVED_MEMES = JSON.parse(localStorage.getItem('Saved Memes')) || []
 
-function saveMeme() {
+function saveMeme(id) {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
     const myMeme = getMeme()
-    console.log(myMeme)
     myMeme.galleryDisplay = imgDataUrl
-    myMeme.id = 'MyMeme'
+    myMeme.id = id
+    console.log(myMeme);
     SAVED_MEMES.push(myMeme)
     saveToStorage()
 }
@@ -21,4 +21,8 @@ function getFromStorage() {
     const retString = localStorage.getItem('Saved Memes')
     const retMemes = JSON.parse(retString)
     return retMemes 
+}
+
+function getMyMemes() {
+    return SAVED_MEMES
 }

@@ -130,7 +130,7 @@ function onImgSelect(imgUrl) {
     renderMeme()
 }
 
-function onMyImgSelect(imgUrl) {
+function onMyImgSelect(imgUrl, id) {
     const elEditor = document.querySelector('.editor')
     const elCanvas = document.querySelector('.canvas-container')
     const elMyGallery = document.querySelector('.my-meme-gallery')
@@ -138,6 +138,7 @@ function onMyImgSelect(imgUrl) {
     elEditor.classList.toggle('hidden')
     elMyGallery.classList.toggle('hidden')
     setImg(imgUrl)
+    setMyMeme(id)
     renderMyMeme()
 }
 
@@ -333,5 +334,6 @@ function getEvPos(ev) {
 }
 
 function onSaveMeme() {
-    saveMeme()
+    const id = prompt('Please enter a name for your meme')
+    saveMeme(id)
 }

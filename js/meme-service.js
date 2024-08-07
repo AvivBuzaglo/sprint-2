@@ -112,6 +112,22 @@ function moveLine2(dx, dy) {
     gMeme.pos.line2.y += dy
 }
 
+function setMyMeme(id) {
+    console.log(id);
+    const MY_MEMES = getMyMemes()
+    const FindMyMeme = MY_MEMES.filter((meme) => meme.id === id)
+    const myMeme = FindMyMeme[0]
+
+    gMeme.text = myMeme.text
+    gMeme.secondLine = myMeme.secondLine
+    gMeme.selectedLine = myMeme.selectedLine
+    gMeme.color = myMeme.color
+    gMeme.fontSize = myMeme.fontSize
+    gMeme.pos = myMeme.pos
+    gMeme.textSize = myMeme.textSize
+    gMeme.isDrag = myMeme.isDrag
+    gMeme.galleryDisplay = myMeme.galleryDisplay
+}
 
 
 
