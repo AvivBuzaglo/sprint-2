@@ -9,17 +9,17 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    renderGallery()
     addMouseListeners()
+    addTouchListener()
+    renderGallery()
 }
 
 function renderMeme() {
-    // clearCanvas()
     const MEME = getMeme()
     const TEXT = document.querySelector('input[name="text"]').value
 
     drawImg(MEME.img)
-
+    
     if(MEME.selectedLine === 'line1') {
         (TEXT === '') ? setLine1Txt(MEME.text.line1) : setLine1Txt(TEXT)
     }
@@ -40,6 +40,19 @@ function renderMeme() {
         setTimeout(() => drawText(TEXT || MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
     }
     
+    setTimeout(clacTextSize, 108)
+    if(MEME.selectedLine === 'line1') setTimeout(() => drawRect(MEME.pos.line1.x, MEME.pos.line1.y, MEME.textSize.line1.width, MEME.textSize.line1.height), 110)
+    if(MEME.selectedLine === 'line2') setTimeout(() => drawRect(MEME.pos.line2.x, MEME.pos.line2.y, MEME.textSize.line2.width, MEME.textSize.line2.height), 110)
+}
+
+function renderMyMeme() {
+    const MEME = getMeme()
+    // const TEXT = document.querySelector('input[name="text"]').value
+
+    drawImg(MEME.img)
+
+    setTimeout(() => drawText(MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
+    if(MEME.secondLine) setTimeout(() => drawText(MEME.text.line2, MEME.pos.line2.x, MEME.pos.line2.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
     setTimeout(clacTextSize, 108)
     if(MEME.selectedLine === 'line1') setTimeout(() => drawRect(MEME.pos.line1.x, MEME.pos.line1.y, MEME.textSize.line1.width, MEME.textSize.line1.height), 110)
     if(MEME.selectedLine === 'line2') setTimeout(() => drawRect(MEME.pos.line2.x, MEME.pos.line2.y, MEME.textSize.line2.width, MEME.textSize.line2.height), 110)
@@ -115,6 +128,22 @@ function onImgSelect(imgUrl) {
     setImg(imgUrl)
     hiddenToggle()
     renderMeme()
+}
+
+function onMyImgSelect(imgUrl) {
+    const elEditor = document.querySelector('.editor')
+    const elCanvas = document.querySelector('.canvas-container')
+    const elMyGallery = document.querySelector('.my-meme-gallery')
+    elCanvas.classList.toggle('hidden')
+    elEditor.classList.toggle('hidden')
+    elMyGallery.classList.toggle('hidden')
+    setImg(imgUrl)
+    renderMyMeme()
+}
+
+function onMyMemesBtn() {
+    showMyGallery()
+    renderMyMemes()
 }
 
 function onOutLineColor(elOutline) {
@@ -196,18 +225,52 @@ function hiddenToggle() {
     const elEditor = document.querySelector('.editor')
     const elCanvas = document.querySelector('.canvas-container')
     const elCategories = document.querySelector('.categories')
+    const elMyGallery = document.querySelector('.my-meme-gallery')
     
+    if(!elMyGallery.classList.contains('hidden')) {
+        elGallery.classList.toggle('hidden')
+        elGalleryNav.classList.toggle('hidden')
+        elCategories.classList.toggle('hidden')
+        elMyGallery.classList.toggle('hidden')
+        return
+    }
+
     elGallery.classList.toggle('hidden')
     elGalleryNav.classList.toggle('hidden')
+    elCategories.classList.toggle('hidden')
     elEditor.classList.toggle('hidden')
     elCanvas.classList.toggle('hidden')
-    elCategories.classList.toggle('hidden')
+}
+
+function showMyGallery() {
+    const elGallery = document.querySelector('.gallery')
+    const elGalleryNav = document.querySelector('.gallery-nav')
+    const elEditor = document.querySelector('.editor')
+    const elCanvas = document.querySelector('.canvas-container')
+    const elCategories = document.querySelector('.categories')
+    const elMyGallery = document.querySelector('.my-meme-gallery')
+
+    if(elGallery.classList.contains('hidden')) {
+        elEditor.classList.add('hidden')
+        elCanvas.classList.add('hidden')
+    } else {
+        elGallery.classList.add('hidden')
+        elGalleryNav.classList.add('hidden')
+        elCategories.classList.add('hidden')
+    }
+    elMyGallery.classList.remove('hidden')
 }
 
 function addMouseListeners() {
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mousemove', onMove)
     gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListener() {
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
 }
 
 function onDown(ev) {
@@ -269,3 +332,6 @@ function getEvPos(ev) {
     return pos
 }
 
+function onSaveMeme() {
+    saveMeme()
+}

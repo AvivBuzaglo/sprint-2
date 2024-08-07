@@ -38,3 +38,16 @@ function renderGalleryByTag(byTag) {
     const galleryByTag = gGallery.filter(image => image.tag.includes(byTag))
     renderGallery(galleryByTag)
 }
+
+function renderMyMemes() {
+    const elMyGallery = document.querySelector('.my-meme-gallery')
+    const MY_MEMES = getFromStorage()
+    const strHtml = MY_MEMES.map(image => `
+        <div class='my-gallery ${image.id}'>
+        <button class="gallery-btn" onClick="onMyImgSelect('${image.img}')">
+        <img src=${image.galleryDisplay}>
+        </button>
+        </div>
+    `)
+    elMyGallery.innerHTML = strHtml.join('')
+}

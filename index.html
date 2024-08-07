@@ -10,6 +10,7 @@
     <script src="js/galleryController.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/download-share.js"></script>
+    <script src="js/save-memes.js"></script>
     <title>Meme Generator</title>
 </head>
 <body onload="onInit()">
@@ -18,7 +19,7 @@
         <div class="logo">MemeGEN</div>
         <nav class="main-nav">
             <a href="#" class="gallery-link" onclick="hiddenToggle()">Gallery</a>
-            <a href="#" class="about">About</a>
+            <a href="#" class="my-memes" onclick="onMyMemesBtn()">My Memes</a>
         </nav>
     </header>
     
@@ -75,7 +76,12 @@
         <div class="download-and-share">
             <button class="share-btn" onclick="onUploadImg()">Share on Facebook!</button>
             <a href="#" class="download-btn" onclick="onDownloadImg(this)" download="MyMeme.jpg">download</a>
+            <button class="save-btn" onclick="onSaveMeme()">Save Meme</button>
         </div>
+    </section>
+
+    <section class="my-meme-gallery hidden">
+
     </section>
 
 </body>

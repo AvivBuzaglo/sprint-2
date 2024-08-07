@@ -9,7 +9,8 @@ let gMeme = {
     fontSize: '40px Arial',
     pos: {line1: {x: 225, y: 40}, line2: {x: 225, y: 425}},
     textSize: {line1: {width: 192, height: 40}, line2: {width: 184, height: 40}},
-    isDrag: {line1: false, line2: false}
+    isDrag: {line1: false, line2: false},
+    galleryDisplay: ''
 }
 
 
