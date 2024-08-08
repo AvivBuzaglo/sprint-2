@@ -49,14 +49,6 @@ header {
     grid-column: 1/4;
 }
 
-.search-bar{
-    height: 3.75rem;
-    width: 33.75rem;
-    margin-inline-start: 1.563rem;
-    margin-block-start: 1.563rem;
-    border-radius: 6.25rem;
-}
-
 .categories{
     display: grid;
     grid-auto-flow: column;

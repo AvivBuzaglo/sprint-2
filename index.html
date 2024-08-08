@@ -12,6 +12,7 @@
     <script src="js/download-share.js"></script>
     <script src="js/save-memes.js"></script>
     <script src="js/sticker-service.js"></script>
+    <script src="https://kit.fontawesome.com/da4841bd7b.js" crossorigin="anonymous"></script>
     <link rel="icon" href="meme-imgs/logo.png" type="image/icon type">
     <title>Meme Generator</title>
 </head>
@@ -20,21 +21,21 @@
     <header class="main-header">
         <div class="logo"><img class="logo" src="meme-imgs/logo.png" alt="logo"></div>
         <nav class="main-nav">
-            <a href="#" class="gallery-link" onclick="hiddenToggle()">Gallery</a>
-            <a href="#" class="my-memes" onclick="onMyMemesBtn()">My Memes</a>
+            <a href="#" class="gallery-link header-link" onclick="hiddenToggle()">Gallery</a>
+            <a href="#" class="my-memes header-link" onclick="onMyMemesBtn()">My Memes</a>
         </nav>
     </header>
     
     <nav class="gallery-nav">
         <input type="search" id="search" placeholder="Search Key Words" class="search-bar" onchange="onSearch(this)">
         <div class="categories">
-            <a href="#" onclick="renderGalleryByTag('funny')">Funny</a>
-            <a href="#" onclick="renderGalleryByTag('animal')">Animal</a>
-            <a href="#" onclick="renderGalleryByTag('baby')">Baby</a>
-            <a href="#" onclick="renderGalleryByTag('men')">Men</a>
-            <a href="#" onclick="renderGalleryByTag('cute')">Cute</a>
-            <a href="#" onclick="renderGalleryByTag('smile')">Smile</a>
-            <a href="" onclick="renderGallery()">Clear filter</a>
+            <a href="#" class="category" onclick="renderGalleryByTag('funny')">Funny</a>
+            <a href="#" class="category" onclick="renderGalleryByTag('animal')">Animal</a>
+            <a href="#" class="category" onclick="renderGalleryByTag('baby')">Baby</a>
+            <a href="#" class="category" onclick="renderGalleryByTag('men')">Men</a>
+            <a href="#" class="category" onclick="renderGalleryByTag('cute')">Cute</a>
+            <a href="#" class="category" onclick="renderGalleryByTag('smile')">Smile</a>
+            <a href="" class="category" onclick="renderGallery()">Clear filter</a>
         </div>
     </nav>
 
@@ -50,22 +51,22 @@
         
         <div class="lines-btns">
             <button class="add-line editor-btn" onclick="onAddLine()">+</button>
-            <button class="switch-line editor-btn" onclick="onSwitchSelectedLine()">⇅</button>
-            <button class="remove-line editor-btn" onclick="onRemoveLine()">🗑️</button>
-            <button class="inline-edit editor-btn" onClick="toggleInlineEdit()">Inline Edit Toggle</button>
+            <button class="switch-line editor-btn" onclick="onSwitchSelectedLine()"><i class="fa-solid fa-arrow-right-arrow-left"></i></button> 
+            <button class="remove-line editor-btn" onclick="onRemoveLine()"><i class="fa-solid fa-trash"></i></button>
+            <button class="inline-edit editor-btn" onClick="toggleInlineEdit()"><i class="fa-solid fa-pen-to-square"></i></button>
         </div>
 
         <div class="designe-btns">
             <button class="editor-btn font-size-increase" onclick="onFontSizeIncrease()">A+</button>
             <button class="editor-btn font-size-decrease" onclick="onFontSizeDecrease()">A-</button>
-            <button class="editor-btn aglin start">←</button>
-            <button class="editor-btn aglin center">—</button>
-            <button class="editor-btn aglin start">→</button>
+            <button class="editor-btn aglin start"><i class="fa-solid fa-align-left"></i></button>
+            <button class="editor-btn aglin center"><i class="fa-solid fa-align-center"></i></button>
+            <button class="editor-btn aglin start"><i class="fa-solid fa-align-right"></i></button>
             <input list="fonts" class="editor-list">
             <datalist id="fonts"><option value="Arial"></option><option value="font"></option></datalist>
-            <button class="editor-btn fake-btns">S</button>
+            <button class="editor-btn fake-btns"><i class="fa-solid fa-paintbrush"></i></button>
             <input class="editor-btn outline-color" type="color" name="outline" value="#000000" onchange="onOutLineColor(this)" oninput="renderMeme()">
-            <button class="editor-btn fake-btnf">F</button>
+            <button class="editor-btn fake-btnf"><i class="fa-solid fa-fill"></i></button>
             <input class="editor-btn fill-color" type="color" name="fill" value="#FFFFFF" onchange="onFillColor(this)" oninput="renderMeme()">    
         </div>        
 
@@ -77,9 +78,9 @@
         </div>
 
         <div class="download-and-share">
-            <button class="share-btn" onclick="onUploadImg()">Share on Facebook!</button>
-            <a href="#" class="download-btn" onclick="onDownloadImg(this)" download="MyMeme.jpg">download</a>
-            <button class="save-btn" onclick="onSaveMeme()">Save Meme</button>
+            <button class="share-btn" onclick="onUploadImg()"><i class="fa-solid fa-share-nodes"></i> Share on Facebook!</button>
+            <a href="#" class="download-btn" onclick="onDownloadImg(this)" download="MyMeme.jpg"><i class="fa-solid fa-download"></i> download</a>
+            <button class="save-btn" onclick="onSaveMeme()"><i class="fa-solid fa-floppy-disk"></i> Save Meme</button>
         </div>
     </section>
 
