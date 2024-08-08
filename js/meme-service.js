@@ -143,6 +143,55 @@ function moveLine1(dx, dy){
     gMeme.pos.line1.y += dy
 }
 
+function aglinLeft() {
+    if(gMeme.selectedLine === 'line1') {
+        gMeme.pos.line1 = {x: 225, y: 40}
+        const line1 = gMeme.pos.line1
+        const line1_size = gMeme.textSize.line1
+        gMeme.pos.line1.x = line1.x - (line1_size.width / 2)
+        gMeme.pos.line1.y = 40
+        return
+    }
+    if(gMeme.selectedLine === 'line2') {
+        gMeme.pos.line2 = {x: 225, y: 425}
+        const line2 = gMeme.pos.line2
+        const line2_size = gMeme.textSize.line2
+        gMeme.pos.line2.x = line2.x - (line2_size.width / 2)
+        gMeme.pos.line2.y = 425
+        return
+    }
+}
+
+function aglinCenter() {
+    if(gMeme.selectedLine === 'line1') {
+        gMeme.pos.line1 = {x: 225, y: 40}
+        return
+    } 
+    if(gMeme.selectedLine === 'line2') {
+        gMeme.pos.line2 = {x: 225, y: 425}
+        return
+    } 
+}
+
+function aglinRight() {
+    if(gMeme.selectedLine === 'line1') {
+        gMeme.pos.line1 = {x: 225, y: 40}
+        const line1 = gMeme.pos.line1
+        const line1_size = gMeme.textSize.line1
+        gMeme.pos.line1.x = line1.x + (line1_size.width / 2)
+        gMeme.pos.line1.y = 40
+        return
+    }
+    if(gMeme.selectedLine === 'line2') {
+        gMeme.pos.line2 = {x: 225, y: 425}
+        const line2 = gMeme.pos.line2
+        const line2_size = gMeme.textSize.line2
+        gMeme.pos.line2.x = line2.x + (line2_size.width / 2)
+        gMeme.pos.line2.y = 425
+        return
+    }
+}
+
 function moveLine2(dx, dy) {
     gMeme.pos.line2.x += dx
     gMeme.pos.line2.y += dy

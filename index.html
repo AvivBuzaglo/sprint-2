@@ -59,9 +59,9 @@
         <div class="designe-btns">
             <button class="editor-btn font-size-increase" onclick="onFontSizeIncrease()">A+</button>
             <button class="editor-btn font-size-decrease" onclick="onFontSizeDecrease()">A-</button>
-            <button class="editor-btn aglin start"><i class="fa-solid fa-align-left"></i></button>
-            <button class="editor-btn aglin center"><i class="fa-solid fa-align-center"></i></button>
-            <button class="editor-btn aglin start"><i class="fa-solid fa-align-right"></i></button>
+            <button class="editor-btn aglin start" onclick="onAglinLeft()"><i class="fa-solid fa-align-left"></i></button>
+            <button class="editor-btn aglin center" onclick="onAglinCenter()"><i class="fa-solid fa-align-center"></i></button>
+            <button class="editor-btn aglin start" onclick="onAglinRight()"><i class="fa-solid fa-align-right"></i></button>
             <input list="fonts" class="editor-list">
             <datalist id="fonts"><option value="Arial"></option><option value="font"></option></datalist>
             <button class="editor-btn fake-btns"><i class="fa-solid fa-paintbrush"></i></button>

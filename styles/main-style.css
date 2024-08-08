@@ -245,6 +245,10 @@ canvas {
     border-radius: 1.875rem;
 }
 
+.gallery-btn:hover{
+    cursor: pointer;
+}
+
 .gallery-btn img{
     border-radius: 1.875rem;
 }

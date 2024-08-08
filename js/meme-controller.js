@@ -354,6 +354,27 @@ function onMyMemesBtn() {
     renderMyMemes()
 }
 
+function onAglinLeft() {
+    const meme = getMeme()
+    if(meme.selectedLine === 'none') return
+    aglinLeft()
+    renderMeme()
+}
+
+function onAglinCenter() {
+    const meme = getMeme()
+    if(meme.selectedLine === 'none') return
+    aglinCenter()
+    renderMeme()
+}
+
+function onAglinRight() {
+    const meme = getMeme()
+    if(meme.selectedLine === 'none') return
+    aglinRight()
+    renderMeme()
+}
+
 function onOutLineColor(elOutline) {
     const COLOR = elOutline.value
     setOutlineColor(COLOR)
