@@ -81,6 +81,12 @@ canvas {
     border-radius: 0.625rem;
 }
 
+.lines-btns {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+}
+
 .outline-color, .fill-color {
     opacity: 0;
 }

@@ -38,6 +38,10 @@ function resetLine2Pos() {
     gMeme.pos.line2.y = 425
 }
 
+function setImgNoReset(imgUrl) {
+    gMeme.img = imgUrl
+}
+
 function setImg(imgUrl) {
     resetMeme()
     gMeme.img = imgUrl
@@ -67,6 +71,10 @@ function setSelectedLine() {
 
 function setSelectedByClick(line) {
     gMeme.selectedLine = line
+}
+
+function setSelectedLineToNone() {
+    gMeme.selectedLine = 'none'
 }
 
 function setTextSize(line1Width, line2Width) {
@@ -135,16 +143,6 @@ function setMyMeme(id) {
     const myMeme = FindMyMeme[0]
 
     gMeme = myMeme
-
-    // gMeme.text = myMeme.text
-    // gMeme.secondLine = myMeme.secondLine
-    // gMeme.selectedLine = myMeme.selectedLine
-    // gMeme.color = myMeme.color
-    // gMeme.fontSize = myMeme.fontSize
-    // gMeme.pos = myMeme.pos
-    // gMeme.textSize = myMeme.textSize
-    // gMeme.isDrag = myMeme.isDrag
-    // gMeme.galleryDisplay = myMeme.galleryDisplay
 }
 
 

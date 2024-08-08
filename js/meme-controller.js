@@ -4,6 +4,7 @@ let gElCanvas
 let gCtx
 let gStartPos
 let gCurrShape = 'text'
+let gInlineEdit = false
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
@@ -11,6 +12,7 @@ function onInit() {
 
     addMouseListeners()
     addTouchListener()
+    addKeyboardListener()
     renderGallery()
 }
 
@@ -20,6 +22,13 @@ function renderMeme() {
     document.querySelector('input[name="text"]').value = ''
 
     drawImg(MEME.img)
+
+    if(MEME.selectedLine === 'none') {
+        alert('Please selcet the line you want to edit first, we`ve selected line-1 for you')
+        setTimeout(() => drawText(MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
+        if(MEME.secondLine) setTimeout(() => drawText(MEME.text.line2, MEME.pos.line2.x, MEME.pos.line2.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
+        setSelectedByClick('line1')
+    }
     
     if(MEME.selectedLine === 'line1') {
         (TEXT === '') ? setLine1Txt(MEME.text.line1) : setLine1Txt(TEXT)
@@ -87,12 +96,159 @@ function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'whit
     gCtx.strokeText(text, x, y)
 }
 
+function toggleInlineEdit() {
+    (gInlineEdit) ? gInlineEdit = false : gInlineEdit = true
+}
+
+function inlineEditing(ev) {
+    if(!gInlineEdit) return
+    
+    const meme = getMeme()
+    const { selectedLine } = meme
+
+    if(selectedLine === 'none') return
+    
+    switch (ev.key) {
+        case "ArrowDown":
+            if(selectedLine === 'line1'){
+                moveLine1(0,1)
+                renderMeme()
+            } 
+            if(selectedLine === 'line2') moveLine2(0,1)
+            break;
+        case "ArrowUp":
+            if(selectedLine === 'line1') moveLine1(0,-1)
+            if(selectedLine === 'line2') moveLine2(0,-1)
+            break;
+        case "ArrowLeft":
+            if(selectedLine === 'line1') moveLine1(-1,0)
+            if(selectedLine === 'line2') moveLine2(-1,0)
+            break;
+        case "ArrowRight":
+            if(selectedLine === 'line1') moveLine1(1,0)
+            if(selectedLine === 'line2') moveLine2(1,0)
+            break;
+        case "Enter":
+            return;
+        case " ":
+            if(selectedLine === 'line1') editText(' ', 'line1')
+            if(selectedLine === 'line2') editText(' ', 'line2')
+            break;
+        case "Escape":
+            return;
+        case "Backspace":
+            if(selectedLine === 'line1') editText('BackSpace', 'line1')
+            if(selectedLine === 'line2') editText('BackSpace', 'line2')
+            break;
+        case "a": 
+        case "b":
+        case "c":
+        case "d":
+        case "e":
+        case "f":
+        case "g":
+        case "h":
+        case "i":
+        case "j":
+        case "k":
+        case "l":
+        case "m":
+        case "n":
+        case "o":
+        case "p":
+        case "q":
+        case "r":
+        case "s":
+        case "t":
+        case "u":
+        case "v":
+        case "w":
+        case "x":
+        case "y":
+        case "z":
+            if(selectedLine === 'line1') editText(ev.key, 'line1')
+            if(selectedLine === 'line2') editText(ev.key, 'line2')
+            break;
+        case "A": 
+        case "B":
+        case "C":
+        case "D":
+        case "E":
+        case "F":
+        case "G":
+        case "H":
+        case "I":
+        case "J":
+        case "K":
+        case "L":
+        case "M":
+        case "N":
+        case "O":
+        case "P":
+        case "Q":
+        case "R":
+        case "S":
+        case "T":
+        case "U":
+        case "V":
+        case "W":
+        case "X":
+        case "Y":
+        case "Z":
+            if(selectedLine === 'line1') editText(ev.key, 'line1')
+            if(selectedLine === 'line2') editText(ev.key, 'line2')
+            break;
+    }
+}
+
+function editText(latter, line) {
+    const meme = getMeme()
+    if(line === 'line1') {
+        const ogTxt = meme.text.line1
+        if(latter === 'BackSpace') {
+            const txtArr = [...ogTxt]
+            txtArr.pop()
+            const newTxt = txtArr.join('')
+            setLine1Txt(newTxt)
+            renderMeme()
+            return
+        }
+        const newTxt = ogTxt + latter    
+        setLine1Txt(newTxt)
+        renderMeme()
+        return
+    }
+    if(line === 'line2') {
+        const ogTxt = meme.text.line2
+        if(latter === 'BackSpace') {
+            const txtArr = [...ogTxt]
+            txtArr.pop()
+            const newTxt = txtArr
+            setLine2Txt(newTxt)
+            renderMeme()
+            return
+        }
+        const newTxt = ogTxt + latter
+        setLine2Txt(newTxt)
+        renderMeme()
+        return
+    }
+}
+
 function drawRect(x, y, lineWidth, lineHeight) {
     gCtx.beginPath()
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 2
     gCtx.rect(x - (lineWidth / 2) - 15, y - lineHeight, lineWidth + 30, lineHeight + 10)
     gCtx.stroke()
+}
+
+function undrawRect(currMeme) {
+    clearCanvas()
+    drawImg(currMeme.img)
+    setTimeout(() => drawText(currMeme.text.line1, currMeme.pos.line1.x, currMeme.pos.line1.y, currMeme.color.outline, currMeme.color.fill, currMeme.fontSize), 100)
+    if(currMeme.secondLine) setTimeout(() => drawText(currMeme.text.line2, currMeme.pos.line2.x, currMeme.pos.line2.y, currMeme.color.outline, currMeme.color.fill, currMeme.fontSize), 100)
+    setSelectedLineToNone()
 }
 
 function onDraw(ev) {
@@ -110,6 +266,11 @@ function onDraw(ev) {
     setTextSize(line1_size.width, line2_size.width)
      
     if((line1_x_calc.left <= offsetX) && (offsetX <= line1_x_calc.right) && (line1_y_calc.up <= offsetY) && (offsetY <= line1.y)) {
+        if(MEME.selectedLine === 'line1'){
+            undrawRect(MEME)
+            document.querySelector('input[name="text"]').value = ''
+            return
+        }
         setSelectedByClick('line1')
         document.querySelector('input[name="text"]').value = ''
         renderMeme()
@@ -117,6 +278,11 @@ function onDraw(ev) {
     }
     else if((line2_x_calc.left <= offsetX) && (offsetX <= line2_x_calc.right) && (line2_y_calc.up <= offsetY) && (offsetY <= line2.y)) {
         if(!MEME.secondLine) return 
+        if(MEME.selectedLine === 'line2'){
+            undrawRect(MEME)
+            document.querySelector('input[name="text"]').value = ''
+            return
+        }
         setSelectedByClick('line2')
         document.querySelector('input[name="text"]').value = ''
         renderMeme()
@@ -268,6 +434,10 @@ function addMouseListeners() {
     gElCanvas.addEventListener('mouseup', onUp)
 }
 
+function addKeyboardListener() {
+    window.addEventListener('keydown', inlineEditing)
+}
+
 function addTouchListener() {
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchmove', onMove)
@@ -286,7 +456,7 @@ function onDown(ev) {
 
 function onUp() {
     setLineDragOff()
-    document.body.style.cursor = 'grab'
+    document.body.style.cursor = 'default'
 }
 
 
@@ -300,6 +470,7 @@ function onMove(ev) {
         const pos = getEvPos(ev)
         const dx = pos.x - gStartPos.x
         const dy = pos.y - gStartPos.y
+        
 
         moveLine1(dx, dy)
         gStartPos = pos
