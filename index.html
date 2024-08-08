@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/media-queries.css">
     <script src="js/meme-service.js"></script>
-    <script src="js/galleryController.js"></script>
+    <script src="js/gallery-service.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/download-share.js"></script>
     <script src="js/save-memes.js"></script>
+    <script src="js/sticker-service.js"></script>
     <link rel="icon" href="meme-imgs/logo.png" type="image/icon type">
     <title>Meme Generator</title>
 </head>
@@ -41,7 +42,7 @@
     </section>
 
     <div class="canvas-container hidden">
-        <canvas height="450" width="450" onclick="onDraw(event)"></canvas>
+        <canvas class="droppable" height="450" width="450" onclick="onDraw(event)"></canvas>
     </div>
 
     <section class="editor hidden">
@@ -69,10 +70,10 @@
         </div>        
 
         <div class="stickers-container">
-            <button class="sticker" onclick="check()">😂</button>
-            <button class="sticker" onclick="check()">😎</button>
-            <button class="sticker" onclick="check()">😁</button>
-            <button class="sticker" onclick="check()">🤬</button>
+            <a class="sticker laugh draggable" draggable="true" id="laugh">😂</a>
+            <a class="sticker cool draggable" draggable="true" id="cool">😎</a>
+            <a class="sticker smile draggable" draggable="true" id="smile">😁</a>
+            <a class="sticker angry draggable" draggable="true" id="angry">🤬</a>
         </div>
 
         <div class="download-and-share">

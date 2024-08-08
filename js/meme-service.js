@@ -10,7 +10,13 @@ let gMeme = {
     pos: {line1: {x: 225, y: 40}, line2: {x: 225, y: 425}},
     textSize: {line1: {width: 192, height: 40}, line2: {width: 184, height: 40}},
     isDrag: {line1: false, line2: false},
-    galleryDisplay: ''
+    galleryDisplay: '',
+    stickers: {
+        sticker1: {idx: '', pos: {x: 0, y: 0}, fontSize: '', isDragged: false},
+        sticker2: {idx: '', pos: {x: 0, y: 0}, fontSize: '', isDragged: false},
+        sticker3: {idx: '', pos: {x: 0, y: 0}, fontSize: '', isDragged: false},
+        sticker4: {idx: '', pos: {x: 0, y: 0}, fontSize: '', isDragged: false}
+    }
 }
 
 
@@ -96,7 +102,13 @@ function resetMeme() {
         pos: {line1: {x: 225, y: 40}, line2: {x: 225, y: 425}},
         textSize: {line1: {width: 192, height: 40}, line2: {width: 184, height: 40}},
         isDrag: {line1: false, line2: false},
-        galleryDisplay: ''
+        galleryDisplay: '',
+        stickers: {
+            sticker1: {idx: '', pos: {x: 0, y: 0}, fontSize: '', isDragged: false},
+            sticker2: {idx: '', pos: {x: 0, y: 0}, fontSize: '', isDragged: false},
+            sticker3: {idx: '', pos: {x: 0, y: 0}, fontSize: '', isDragged: false},
+            sticker4: {idx: '', pos: {x: 0, y: 0}, fontSize: '', isDragged: false}
+        }
     }
 }
 
@@ -145,6 +157,29 @@ function setMyMeme(id) {
     gMeme = myMeme
 }
 
+function setStickerOnMeme(sticker) {
+    const {idx, pos, fontSize, isDragged} = sticker
+    
+    if(!gMeme.stickers.sticker1.isDragged) {
+        gMeme.stickers.sticker1 = {idx, pos, fontSize, isDragged}
+        return
+    }
+    if(!gMeme.stickers.sticker2.isDragged && gMeme.stickers.sticker1.isDragged) {
+        gMeme.stickers.sticker2 = {idx, pos, fontSize, isDragged}
+        return
+    }
+    if(!gMeme.stickers.sticker3.isDragged && gMeme.stickers.sticker2.isDragged) {
+        gMeme.stickers.sticker3 = {idx, pos, fontSize, isDragged}
+        return
+    }
+    if(!gMeme.stickers.sticker4.isDragged && gMeme.stickers.sticker3.isDragged) {
+        gMeme.stickers.sticker4 = {idx, pos, fontSize, isDragged}
+        alert('You have reached the limit number for stickers on meme')
+        return
+    }
+    alert('You have reached the limit number for stickers on meme')
+    return
+}
 
 
 

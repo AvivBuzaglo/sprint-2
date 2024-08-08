@@ -13,21 +13,23 @@ function onInit() {
     addMouseListeners()
     addTouchListener()
     addKeyboardListener()
+    addStickersEvListeners()
     renderGallery()
 }
 
 function renderMeme() {
     const MEME = getMeme()
+    const stickers = getStickers()
     const TEXT = document.querySelector('input[name="text"]').value
     document.querySelector('input[name="text"]').value = ''
 
     drawImg(MEME.img)
 
     if(MEME.selectedLine === 'none') {
-        alert('Please selcet the line you want to edit first, we`ve selected line-1 for you')
         setTimeout(() => drawText(MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
         if(MEME.secondLine) setTimeout(() => drawText(MEME.text.line2, MEME.pos.line2.x, MEME.pos.line2.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
         setSelectedByClick('line1')
+        alert('Please selcet the line you want to edit first, we`ve selected line-1 for you')
     }
     
     if(MEME.selectedLine === 'line1') {
@@ -53,10 +55,27 @@ function renderMeme() {
     setTimeout(clacTextSize, 108)
     if(MEME.selectedLine === 'line1') setTimeout(() => drawRect(MEME.pos.line1.x, MEME.pos.line1.y, MEME.textSize.line1.width, MEME.textSize.line1.height), 110)
     if(MEME.selectedLine === 'line2') setTimeout(() => drawRect(MEME.pos.line2.x, MEME.pos.line2.y, MEME.textSize.line2.width, MEME.textSize.line2.height), 110)
+    
+    if(MEME.stickers.sticker1.isDragged) {
+        setTimeout(() => drawSticker(stickers[MEME.stickers.sticker1.idx].value, MEME.stickers.sticker1.pos, stickers[MEME.stickers.sticker1.idx].fontSize), 100);
+        
+        if(MEME.stickers.sticker2.isDragged) {
+            setTimeout(() => drawSticker(stickers[MEME.stickers.sticker2.idx].value, MEME.stickers.sticker2.pos, stickers[MEME.stickers.sticker2.idx].fontSize), 100);
+        
+            if(MEME.stickers.sticker3.isDragged){
+                setTimeout(() => drawSticker(stickers[MEME.stickers.sticker3.idx].value, MEME.stickers.sticker3.pos, stickers[MEME.stickers.sticker3.idx].fontSize), 100);
+
+                if(MEME.stickers.sticker4.isDragged) {
+                    setTimeout(() => drawSticker(stickers[MEME.stickers.sticker4.idx].value, MEME.stickers.sticker4.pos, stickers[MEME.stickers.sticker4.idx].fontSize), 100);
+                }
+            }
+        }
+    }
 }
 
 function renderMyMeme() {
     const MEME = getMeme()
+    const stickers = getStickers()
 
     drawImg(MEME.img)
 
@@ -65,6 +84,22 @@ function renderMyMeme() {
     setTimeout(clacTextSize, 108)
     if(MEME.selectedLine === 'line1') setTimeout(() => drawRect(MEME.pos.line1.x, MEME.pos.line1.y, MEME.textSize.line1.width, MEME.textSize.line1.height), 110)
     if(MEME.selectedLine === 'line2') setTimeout(() => drawRect(MEME.pos.line2.x, MEME.pos.line2.y, MEME.textSize.line2.width, MEME.textSize.line2.height), 110)
+    
+    if(MEME.stickers.sticker1.isDragged) {
+        setTimeout(() => drawSticker(stickers[MEME.stickers.sticker1.idx].value, MEME.stickers.sticker1.pos, stickers[MEME.stickers.sticker1.idx].fontSize), 100);
+        
+        if(MEME.stickers.sticker2.isDragged) {
+            setTimeout(() => drawSticker(stickers[MEME.stickers.sticker2.idx].value, MEME.stickers.sticker2.pos, stickers[MEME.stickers.sticker2.idx].fontSize), 100);
+        
+            if(MEME.stickers.sticker3.isDragged){
+                setTimeout(() => drawSticker(stickers[MEME.stickers.sticker3.idx].value, MEME.stickers.sticker3.pos, stickers[MEME.stickers.sticker3.idx].fontSize), 100);
+
+                if(MEME.stickers.sticker4.isDragged) {
+                    setTimeout(() => drawSticker(stickers[MEME.stickers.sticker4.idx].value, MEME.stickers.sticker4.pos, stickers[MEME.stickers.sticker4.idx].fontSize), 100);
+                }
+            }
+        }
+    }
 }
 
 function clearCanvas() {
@@ -79,9 +114,6 @@ function drawImg(img) {
     }
 }
 
-function check() {
-    console.log('hey');
-}
 
 function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'white', fontSize = '40px Arial') {
     gCtx.lineWidth = 2
@@ -94,6 +126,15 @@ function drawText(text, x = 0, y = 0 , outlineColor = 'black', fillColor = 'whit
     
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
+}
+
+function drawSticker(sticker,pos = {x , y}, fontSize = '40px') {
+    gCtx.lineWidth = 2
+    gCtx.font = fontSize 
+    gCtx.textAlign = 'center'
+    gCtx.textBaseLine = 'middle'
+    
+    gCtx.strokeText(sticker, pos.x, pos.y)
 }
 
 function toggleInlineEdit() {
@@ -507,4 +548,41 @@ function getEvPos(ev) {
 function onSaveMeme() {
     const id = prompt('Please enter a name for your meme')
     saveMeme(id)
+}
+
+function addStickersEvListeners() {
+    const elDraggables = document.querySelectorAll('.draggable')
+    const elDroppable = document.querySelector('.droppable')
+
+    elDraggables.forEach(elem => {
+        elem.addEventListener("dragstart", onDragStart)
+    })
+    elDroppable.addEventListener("dragover", onDragOver)
+    elDroppable.addEventListener("drop", onDrop)
+}
+
+function onDragStart(ev) {
+    ev.dataTransfer.setData("text", ev.target.id)
+}
+
+function onDragOver(ev) {
+    ev.preventDefault()
+}
+
+function onDrop(ev) {
+    ev.preventDefault()
+    const elDraggableData = ev.dataTransfer.getData("text")
+    const sticker = getStickerById(elDraggableData)
+    const evPos = {x: ev.offsetX, y: ev.offsetY}
+    
+    drawSticker(sticker.value, evPos)
+    setStickerPos(sticker.idx, ev.offsetX, ev.offsetY)
+    setIsDragged(sticker.idx)
+
+    setStickerOnMeme(sticker)
+
+    const draggbleElement = document.getElementById(elDraggableData)
+    console.log(draggbleElement);
+    draggbleElement.classList.add('dragged')
+    draggbleElement.setAttribute('draggable', 'false')
 }

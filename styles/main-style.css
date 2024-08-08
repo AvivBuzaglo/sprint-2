@@ -107,6 +107,20 @@ canvas {
     align-content: center;  
 }
 
+.draggable {
+    cursor: move;
+}
+
+.draggable:hover {
+    opacity: 0.5;
+}
+
+.draggable.dragged {
+    user-select: none;
+    opacity: 0.2;
+    cursor: default;
+}
+
 .download-btn {
     display: block;
     background-color: rebeccapurple;
@@ -117,6 +131,19 @@ canvas {
     text-align: center;
     color: white;
     font-weight: bold;
+}
+
+.gallery-btn{
+    display: grid;
+    width: 10.625rem;
+    height: 10.625rem;
+    align-content: center;
+    justify-content: center;
+    border-radius: 1.875rem;
+}
+
+.gallery-btn img{
+    border-radius: 1.875rem;
 }
 
 .share-btn {
