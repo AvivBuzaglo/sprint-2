@@ -39,6 +39,7 @@ function resetLine2Pos() {
 }
 
 function setImg(imgUrl) {
+    resetMeme()
     gMeme.img = imgUrl
 }
 
@@ -74,6 +75,21 @@ function setTextSize(line1Width, line2Width) {
 
     gMeme.textSize.line2.width = line2Width
     gMeme.textSize.line2.height = getFontSize()
+}
+
+function resetMeme() {
+    gMeme = {
+        img: 'meme-imgs/meme-imgs-(square)/17.jpg',
+        text: {line1: 'hello world', line2: 'Bye World'},
+        secondLine: false,
+        selectedLine: 'line1',
+        color: {outline: 'black', fill: 'white'},
+        fontSize: '40px Arial',
+        pos: {line1: {x: 225, y: 40}, line2: {x: 225, y: 425}},
+        textSize: {line1: {width: 192, height: 40}, line2: {width: 184, height: 40}},
+        isDrag: {line1: false, line2: false},
+        galleryDisplay: ''
+    }
 }
 
 function isLineClicked(clickedPos) {
@@ -118,15 +134,17 @@ function setMyMeme(id) {
     const FindMyMeme = MY_MEMES.filter((meme) => meme.id === id)
     const myMeme = FindMyMeme[0]
 
-    gMeme.text = myMeme.text
-    gMeme.secondLine = myMeme.secondLine
-    gMeme.selectedLine = myMeme.selectedLine
-    gMeme.color = myMeme.color
-    gMeme.fontSize = myMeme.fontSize
-    gMeme.pos = myMeme.pos
-    gMeme.textSize = myMeme.textSize
-    gMeme.isDrag = myMeme.isDrag
-    gMeme.galleryDisplay = myMeme.galleryDisplay
+    gMeme = myMeme
+
+    // gMeme.text = myMeme.text
+    // gMeme.secondLine = myMeme.secondLine
+    // gMeme.selectedLine = myMeme.selectedLine
+    // gMeme.color = myMeme.color
+    // gMeme.fontSize = myMeme.fontSize
+    // gMeme.pos = myMeme.pos
+    // gMeme.textSize = myMeme.textSize
+    // gMeme.isDrag = myMeme.isDrag
+    // gMeme.galleryDisplay = myMeme.galleryDisplay
 }
 
 

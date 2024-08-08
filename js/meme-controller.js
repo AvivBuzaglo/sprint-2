@@ -17,6 +17,7 @@ function onInit() {
 function renderMeme() {
     const MEME = getMeme()
     const TEXT = document.querySelector('input[name="text"]').value
+    document.querySelector('input[name="text"]').value = ''
 
     drawImg(MEME.img)
     
@@ -47,7 +48,6 @@ function renderMeme() {
 
 function renderMyMeme() {
     const MEME = getMeme()
-    // const TEXT = document.querySelector('input[name="text"]').value
 
     drawImg(MEME.img)
 

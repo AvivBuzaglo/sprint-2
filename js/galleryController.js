@@ -57,6 +57,8 @@ function onSearch(elInput) {
     const keyWords = ['funny', 'animal', 'baby', 'men', 'cute', 'smile']
     if(keyWords.includes(text.toLowerCase())) {
         renderGalleryByTag(text.toLowerCase())
+        elInput.value = ''
         return
-    } else prompt(`${text} is not a keyword`)
+    } else alert(`${text} is not a keyword`)
+    elInput.value = ''
 }
