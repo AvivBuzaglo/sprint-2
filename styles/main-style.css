@@ -12,7 +12,7 @@ html {
 }
 
 body {
-    background-image: url('/meme-imgs/background.png');
+    background-image: url('backgrounds/background.png');
     background-size: cover;
 }
 
