@@ -25,11 +25,11 @@ function renderMeme() {
 
     drawImg(MEME.img)
 
-    if(MEME.selectedLine === 'none') {
-        setTimeout(() => drawText(MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
-        if(MEME.secondLine) setTimeout(() => drawText(MEME.text.line2, MEME.pos.line2.x, MEME.pos.line2.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
-        alert('Please selcet the line you want to edit first')
-    }
+    // if(MEME.selectedLine === 'none') {
+    //     setTimeout(() => drawText(MEME.text.line1, MEME.pos.line1.x, MEME.pos.line1.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
+    //     if(MEME.secondLine) setTimeout(() => drawText(MEME.text.line2, MEME.pos.line2.x, MEME.pos.line2.y, MEME.color.outline, MEME.color.fill, MEME.fontSize), 100)
+    //     alert('Please selcet the line you want to edit first')
+    // }
     
     if(MEME.selectedLine === 'line1') {
         (TEXT === '') ? setLine1Txt(MEME.text.line1) : setLine1Txt(TEXT)
